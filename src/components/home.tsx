@@ -27,12 +27,11 @@ export default function Home() {
           </div>
         </div>
       </header>
-
       <main className="flex-1 container mx-auto py-12 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tight mb-2">
-              Welcome to the AI-Powered Exam Portal
+              Welcome to the Examiner
             </h2>
             <p className="text-muted-foreground text-lg">
               Upload PDF tests, automatically convert them to digital
@@ -130,7 +129,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-
       <footer className="border-t py-6 bg-white">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} Exam Portal. All rights reserved.</p>
