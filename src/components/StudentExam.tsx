@@ -141,6 +141,8 @@ const StudentExam = ({
       setError(null);
       setCurrentStep("loading");
 
+      console.log("Attempting to fetch exam with ID:", urlExamId || propExamId);
+
       try {
         // Validate UUID format before making the request
         const examId = urlExamId || propExamId || "";

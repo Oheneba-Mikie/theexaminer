@@ -8,17 +8,8 @@ export const redirectService = {
    * @returns The normalized URL for the exam
    */
   getExamUrl(examId: string): string {
-    // Check if we're on the external domain
-    const isExternalDomain =
-      window.location.hostname === "theexaminer.theinvigilator.com";
-
-    if (isExternalDomain) {
-      // On external domain, use root path
-      return `/${examId}`;
-    } else {
-      // On internal domain, use /exam/ path
-      return `/exam/${examId}`;
-    }
+    // Always use the root path for direct access
+    return `/${examId}`;
   },
 
   /**

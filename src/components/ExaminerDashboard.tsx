@@ -283,8 +283,8 @@ const ExaminerDashboard = () => {
   };
 
   const handleCopyUrl = (url: string, examId: string) => {
-    // Ensure we have a valid URL by constructing it with the UUID
-    const fullUrl = url || `${window.location.origin}/exam/${examId}`;
+    // Use the current domain for sharing
+    const fullUrl = url || `${window.location.origin}/${examId}`;
     navigator.clipboard.writeText(fullUrl);
     alert(
       "Exam URL copied to clipboard! You can now share this with students.",
