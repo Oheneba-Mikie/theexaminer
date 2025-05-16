@@ -60,7 +60,7 @@ interface EditorQuestion {
   id: string; // UUID
   text: string;
   options: { id: string; text: string }[];
-  correctAnswer: string; // UUID of the correct option
+  correctOptionId: string; // UUID of the correct option
 }
 
 const ExaminerDashboard = () => {
@@ -188,7 +188,7 @@ const ExaminerDashboard = () => {
         },
         { id: "123e4567-e89b-12d3-a456-426614174014", text: "Golgi Apparatus" },
       ],
-      correctAnswer: "123e4567-e89b-12d3-a456-426614174012", // UUID of the "Mitochondria" option
+      correctOptionId: "123e4567-e89b-12d3-a456-426614174012", // UUID of the "Mitochondria" option
     },
     {
       id: "223e4567-e89b-12d3-a456-426614174020", // Example UUID
@@ -199,7 +199,7 @@ const ExaminerDashboard = () => {
         { id: "223e4567-e89b-12d3-a456-426614174023", text: "Gas" },
         { id: "223e4567-e89b-12d3-a456-426614174024", text: "Energy" },
       ],
-      correctAnswer: "223e4567-e89b-12d3-a456-426614174024", // UUID of the "Energy" option
+      correctOptionId: "223e4567-e89b-12d3-a456-426614174024", // UUID of the "Energy" option
     },
   ];
 
@@ -362,7 +362,7 @@ const ExaminerDashboard = () => {
 
         // Find the correct option in the new array
         const correctOption = optionsWithUUIDs.find(
-          (o, index) => q.options[index].id === q.correctAnswer,
+          (o, index) => q.options[index].id === q.correctOptionId,
         );
 
         return {
@@ -417,7 +417,8 @@ const ExaminerDashboard = () => {
       ]);
 
       // Switch to the manage tab to show the newly created exam
-      document.querySelector('[data-value="manage"]')?.click();
+      const manageTab = document.querySelector('[data-value="manage"]') as HTMLElement;
+      manageTab?.click();
 
       // Show success message
       alert(

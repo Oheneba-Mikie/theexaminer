@@ -1,5 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
-import { Exam, Question, Submission } from "@/types/exam";
+import { Exam, Question, Submission, Option } from "@/types/exam";
 
 /**
  * Service for interacting with Supabase database
@@ -46,7 +46,7 @@ export const supabaseService = {
             exam.questions.map((q) => ({
               exam_id: examId,
               text: q.text,
-              options: q.options,
+              options: JSON.stringify(q.options),
               correct_option_id: q.correctOptionId,
             })),
           );
@@ -65,10 +65,12 @@ export const supabaseService = {
       // Combine the data
       const examWithQuestions: Exam = {
         ...data,
+        createdAt: data.created_at,
+        status: data.status as "active" | "draft",
         questions: questionsData.map((q) => ({
           id: q.id,
           text: q.text,
-          options: q.options,
+          options: JSON.parse(q.options as string) as Option[],
           correctOptionId: q.correct_option_id,
         })),
       };
@@ -109,10 +111,12 @@ export const supabaseService = {
 
           return {
             ...exam,
+            createdAt: exam.created_at,
+            status: exam.status as "active" | "draft",
             questions: questionsData.map((q) => ({
               id: q.id,
               text: q.text,
-              options: q.options,
+              options: JSON.parse(q.options as string) as Option[],
               correctOptionId: q.correct_option_id,
             })),
           };
@@ -158,10 +162,12 @@ export const supabaseService = {
       // Combine the data
       const exam: Exam = {
         ...examData,
+        createdAt: examData.created_at,
+        status: examData.status as "active" | "draft",
         questions: questionsData.map((q) => ({
           id: q.id,
           text: q.text,
-          options: q.options,
+          options: JSON.parse(q.options as string) as Option[],
           correctOptionId: q.correct_option_id,
         })),
       };

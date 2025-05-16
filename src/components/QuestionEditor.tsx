@@ -19,7 +19,7 @@ export const QuestionEditor = ({ questions = [] }: QuestionEditorProps) => {
     id: "",
     text: "",
     options: [],
-    correctAnswer: "",
+    correctOptionId: "",
   };
 
   const handleQuestionTextChange = (
@@ -45,11 +45,11 @@ export const QuestionEditor = ({ questions = [] }: QuestionEditorProps) => {
     setEditedQuestions(updatedQuestions);
   };
 
-  const handleCorrectAnswerChange = (value: string) => {
+  const handleCorrectOptionChange = (value: string) => {
     const updatedQuestions = [...editedQuestions];
     updatedQuestions[currentQuestionIndex] = {
       ...currentQuestion,
-      correctAnswer: value,
+      correctOptionId: value,
     };
     setEditedQuestions(updatedQuestions);
   };
@@ -76,10 +76,10 @@ export const QuestionEditor = ({ questions = [] }: QuestionEditorProps) => {
       options: currentQuestion.options.filter(
         (option) => option.id !== optionId,
       ),
-      correctAnswer:
-        currentQuestion.correctAnswer === optionId
+      correctOptionId:
+        currentQuestion.correctOptionId === optionId
           ? ""
-          : currentQuestion.correctAnswer,
+          : currentQuestion.correctOptionId,
     };
     setEditedQuestions(updatedQuestions);
   };
@@ -147,8 +147,8 @@ export const QuestionEditor = ({ questions = [] }: QuestionEditorProps) => {
             </div>
 
             <RadioGroup
-              value={currentQuestion.correctAnswer}
-              onValueChange={handleCorrectAnswerChange}
+              value={currentQuestion.correctOptionId}
+              onValueChange={handleCorrectOptionChange}
               className="space-y-3"
             >
               {currentQuestion.options.map((option) => (
