@@ -41,6 +41,15 @@ function App() {
                 />
               }
             />
+            {/* Handle external domain exam links */}
+            <Route
+              path="/:examId"
+              element={
+                <StudentExam
+                  urlExamId={window.location.pathname.substring(1)}
+                />
+              }
+            />
             {/* Add tempobook route to prevent catch-all from capturing it */}
             {import.meta.env.VITE_TEMPO === "true" && (
               <Route path="/tempobook/*" element={null} />

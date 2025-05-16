@@ -30,10 +30,11 @@ export const supabaseService = {
       // Get the generated UUID
       const examId = data.id;
 
-      // Update the URL with the UUID
+      // Update the URL with the UUID - use the external domain for sharing
+      const examUrl = `https://theexaminer.theinvigilator.com/${examId}`;
       const { error: urlError } = await supabase
         .from("exams")
-        .update({ url: `${window.location.origin}/exam/${examId}` })
+        .update({ url: examUrl })
         .eq("id", examId);
 
       if (urlError) throw urlError;
